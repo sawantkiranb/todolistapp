@@ -1,0 +1,50 @@
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>To Do List App</h1>
+  </div>
+</div>
+
+<form [formGroup]="todoForm" class="input-group" (ngSubmit)="onSubmit()">
+  <input
+    type="text"
+    class="form-control"
+    [ngClass]="{ error: title.invalid && (title.dirty || title.touched) }"
+    #toDoItem
+    formControlName="title"
+    id="title"
+  />
+
+  <div class="input-group-append">
+    <button
+      type="submit"
+      [disabled]="!todoForm.valid"
+      class="btn btn-link btn-outline-dark"
+    >
+      <i class="fa fa-plus-circle"></i>
+    </button>
+  </div>
+</form>
+
+<div style="margin: 5px 0px;">
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let item of toDoListArray">
+      <span
+        class="mouse-hover"
+        (click)="updateItem(item)"
+        [ngClass]="{ 'text-success': item.isChecked }"
+      >
+        <i
+          class="fa fa-lg"
+          [ngClass]="item.isChecked ? 'fa-check-circle' : 'fa-circle-thin'"
+        ></i>
+      </span>
+      {{ item.title }}
+      <span
+        class="text-danger pull-right mouse-hover"
+        (click)="deleteItem(item.$key)"
+      >
+        <i class="fa fa-lg fa-trash-o"></i>
+      </span>
+    </li>
+  </ul>
+</div>
