@@ -14,11 +14,13 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { TodoComponent } from './todo/todo.component';
+import { EventReminderComponent } from './event-reminder/event-reminder.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent
+    TodoComponent,
+    EventReminderComponent
   ],
   imports: [
     BrowserModule,

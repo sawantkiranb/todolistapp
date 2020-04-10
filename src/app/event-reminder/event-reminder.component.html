@@ -1,0 +1,90 @@
+<div class="jumbotron text-center">
+  <!-- <h1>Event Timer</h1>1 -->
+  <h1>{{ this.countdown }}</h1>
+  <h2>{{ this.title }}</h2>
+</div>
+
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-4">
+          <input
+            type="text"
+            class="form-control"
+            name="title"
+            id="title"
+            placeholder="Event Title"
+            formControlName="title"
+          />
+        </div>
+        <div class="col-md-4">
+          <input
+            type="date"
+            class="form-control"
+            name="eventdate"
+            id="eventdate"
+            placeholder="Event Date"
+            formControlName="eventDate"
+          />
+        </div>
+        <div class="col-md-3">
+          <input
+            type="time"
+            class="form-control"
+            name="eventtime"
+            id="eventtime"
+            placeholder="Event Time"
+            formControlName="eventTime"
+          />
+        </div>
+        <div class="col-md-1">
+          <button
+            class="btn btn-light btn-outline-secondary"
+            type="submit"
+            [disabled]="!eventForm.valid"
+          >
+            <i class="fa fa-plus-circle"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="mt-4">
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let event of eventList; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ event.title }}</td>
+        <td>{{ event.eventDate }}</td>
+        <td>{{ tConvert(event.eventTime) }}</td>
+        <td>
+          <button
+            class="btn btn-sm btn-light btn-outline-secondary"
+            (click)="selectEvent(event.$key)"
+          >
+            <i class="fa fa-check-circle text-success"></i>
+          </button>
+          <button
+            class="btn btn-sm btn-light btn-outline-secondary"
+            style="margin-left: 2px;"
+            (click)="deleteEvent(event.$key)"
+          >
+            <i class="fa fa-lg fa-trash-o text-danger"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
